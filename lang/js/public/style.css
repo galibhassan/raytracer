@@ -1,0 +1,25 @@
+*{
+    font-family: monospace;
+}
+
+.container {
+    width: 98vw;
+    height: 90vh;
+}
+.grid{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.cell{
+    background-color: rgb(202, 202, 202);
+    margin: 1px;
+    border-radius: 5px;
+}
+
+body{
+    background-color: rgb(58, 58, 58);
+}
