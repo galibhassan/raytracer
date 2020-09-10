@@ -1,14 +1,31 @@
 const Vec3 = require("./vec3");
 const Ray = require("./ray");
 const Sphere = require("./sphere");
+const Light = require("./light");
+
 const { color, doesHitSphere } = require("./utils");
 
 const main = (nx, ny ) => {
 
     let cells = []
 
-    const sphere = new Sphere(new Vec3(0, 0, -1), 0.5)
+    const sphere = new Sphere({
+        center: new Vec3(0, 0, -1), 
+        radius: 0.5,
+        material: {
+            diffuse: {
+                r: 39, 
+                g: 149, 
+                b: 245
+            }
+        }
+    })
     
+    const light = new Light({
+        position: new Vec3(-3, -1, 0.5),
+        intensity: 7,
+        color: {r:255, g:255, b:255}
+    })
 
 
     const lowerLeftCorner = new Vec3(-2, -1, -1);
@@ -30,7 +47,7 @@ const main = (nx, ny ) => {
                             )
                     )
             );
-            let col = color(ray, sphere);
+            let col = color(ray, sphere, light);
             let ir = parseInt(255.99 * col.r);
             let ig = parseInt(255.99 * col.g);
             let ib = parseInt(255.99 * col.b);

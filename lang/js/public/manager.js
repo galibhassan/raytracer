@@ -22,7 +22,6 @@ const getSingleRow = (nCols, cellWidth, cellHeight, i) => {
 }
 
 const getSingleCell = (width, height, cell_id) => {
-    console.log(width, height)
     const { i, j } = cell_id
     const cell = document.createElement("div");
     cell.style.width = width + "px";
@@ -61,8 +60,8 @@ const getColorDataForCells = async (nRows, nCols) => {
 }
 
 main = async () => {
-    const CELL_WIDTH = 10;
-    const CELL_HEIGHT = 10;
+    const CELL_WIDTH = 19;
+    const CELL_HEIGHT = 19;
     const CELL_MARGIN = 1;
 
     const container = document.querySelector(".container");

@@ -1,7 +1,8 @@
 class Sphere {
-    constructor(center, radius){
+    constructor({center, radius, material}){
         this._center = center;
         this._radius = radius;
+        this._material = material;
     };
 
     get center(){
@@ -9,6 +10,9 @@ class Sphere {
     }
     get radius(){
         return this._radius
+    }
+    get material(){
+        return this._material;
     }
 }
 
