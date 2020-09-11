@@ -52,7 +52,7 @@ class Vec3 {
     }
 
     divideBy(divider) {
-        if(typeof divider === "number" ) {
+        if (typeof divider === "number") {
             return new Vec3(
                 this.e1 / divider,
                 this.e2 / divider,
@@ -77,6 +77,14 @@ class Vec3 {
             this.e1 / this.length(),
             this.e2 / this.length(),
             this.e3 / this.length()
+        )
+    }
+
+    crossProdWith(otherVec3) {
+        return new Vec3(
+            this.y * otherVec3.z - this.z * otherVec3.y,
+            this.z * otherVec3.x - this.x * otherVec3.z,
+            this.x * otherVec3.y - this.y * otherVec3.x
         )
     }
 
