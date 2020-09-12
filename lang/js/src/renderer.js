@@ -14,17 +14,17 @@ const main = ({ nRows, nCols, cellWidth, cellHeight }) => {
         v2: new Vec3(0.75429, -0.036959, -0.696204),
         v3: new Vec3(2.35817, 0.936471, -0.519295),
         material: {
-            diffuse: "blue"
+            diffuse: "#3e7fb5"
         }
     })
     geometries.push(triangle)
     
     const triangle2 = new Triangle({
         v1: new Vec3(0, 2.5, -1.3),
-        v2: new Vec3(0, 0, -1),
+        v2: new Vec3(-0.454532, 0, -1),
         v3: new Vec3(1.92302, 0.04895, -0.726603),
         material: {
-            diffuse: "red"
+            diffuse: "#bf382e"
         }
     })
     geometries.push(triangle2)
@@ -34,7 +34,7 @@ const main = ({ nRows, nCols, cellWidth, cellHeight }) => {
         v2: new Vec3(0.113033, 0.231454, -0.19462),
         v3: new Vec3(1.3, 1.44637, -2.17365),
         material: {
-            diffuse: "green"
+            diffuse: "#bcc441"
         }
     })
     geometries.push(triangle3)
