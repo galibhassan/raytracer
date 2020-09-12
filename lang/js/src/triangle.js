@@ -10,7 +10,7 @@ class Triangle {
         this._material = material;
 
     }
-
+    get type(){return "geometry"}
     get v1() { return this._v1 }
     get v2() { return this._v2 }
     get v3() { return this._v3 }

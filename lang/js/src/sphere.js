@@ -4,6 +4,7 @@ class Sphere {
         this._radius = radius;
         this._material = material;
     };
+    get type(){return "geometry"}
 
     get center(){
         return this._center

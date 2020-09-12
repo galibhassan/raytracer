@@ -12,6 +12,7 @@ class Camera {
         this.viewport = this._getPixelatedViewport()
 
     }
+    get type(){return "camera"}
 
     get viewportWidth() { return this._viewportWidth }
     get viewportHeight() { return this._viewportHeight }

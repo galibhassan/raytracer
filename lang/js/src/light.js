@@ -4,6 +4,7 @@ class Light {
         this._color = color;
         this._position = position;
     }
+    get type(){return "light"}
 
     get color() {
         return this._color
