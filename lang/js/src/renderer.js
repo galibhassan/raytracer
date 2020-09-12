@@ -13,7 +13,7 @@ const main = ({ nRows, nCols, cellWidth, cellHeight }) => {
     v2: new Vec3(0.75429, -0.036959, -0.696204),
     v3: new Vec3(2.35817, 0.936471, -0.519295),
     material: {
-      diffuse: "#3e7fb5",
+      diffuse: { r: 255, g: 0, b: 0 },
     },
   });
   scene.add(triangle);
@@ -23,7 +23,7 @@ const main = ({ nRows, nCols, cellWidth, cellHeight }) => {
     v2: new Vec3(-0.454532, 0, -1),
     v3: new Vec3(1.92302, 0.04895, -0.726603),
     material: {
-      diffuse: "#bf382e",
+      diffuse: { r: 255, g: 0, b: 0 },
     },
   });
   scene.add(triangle2);
@@ -33,20 +33,29 @@ const main = ({ nRows, nCols, cellWidth, cellHeight }) => {
     v2: new Vec3(0.113033, 0.231454, -0.19462),
     v3: new Vec3(1.3, 1.44637, -2.17365),
     material: {
-      diffuse: "#bcc441",
+      diffuse: { r: 255, g: 0, b: 0 },
     },
   });
   scene.add(triangle3);
 
   const light = new Light({
     position: new Vec3(-3, -1, 0.5),
-    intensity: 7,
+    intensity: 0.5,
     color: { r: 255, g: 255, b: 255 },
   });
   scene.add(light);
+  const light2 = new Light({
+    position: new Vec3(3, 1, 0.5),
+    intensity: 0.9,
+    color: { r: 255, g: 255, b: 255 },
+  });
+  scene.add(light2);
 
   const cells = scene.render({ nRows, nCols, cellWidth, cellHeight });
   return { cells };
 };
 
 module.exports = main;
+
+// test
+// main({ nRows:10, nCols:10, cellWidth:10, cellHeight:10 })
