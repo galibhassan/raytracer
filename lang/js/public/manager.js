@@ -76,7 +76,9 @@ main = async () => {
 
   gridData.cells.forEach((cell) => {
     const currentCellinDom = document.getElementById(cell.id);
-    currentCellinDom.style.backgroundColor = cell.color;
+    if(currentCellinDom) {
+      currentCellinDom.style.backgroundColor = cell.color;
+    }
   });
 };
 
