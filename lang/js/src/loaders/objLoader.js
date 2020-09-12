@@ -84,10 +84,11 @@ const getOBJData = (filePath) => {
     return { vertices, normals, faces }
 }
 
+module.exports = getOBJData
 
 // test
 // const filePath = path.resolve(__dirname, "samplemodel", "polygonGeometry.obj");
-// console.log(getOBJData(filePath).faces);
+// console.log(getOBJData(filePath));
 
 // test face
 // fLine = `f 7//9 10//9 11//9`
