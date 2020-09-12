@@ -19,6 +19,8 @@ class Scene {
         this._geometries.push(node);
       case "light":
         this._lights.push(node);
+      default:
+        
     }
   }
 
