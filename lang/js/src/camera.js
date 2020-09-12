@@ -115,8 +115,20 @@ class Camera {
     );
     const rayDirection = new Vec3(0, 0, -1);
     const ray = new Ray(rayOrigin, rayDirection);
-    const hitPoint = geometry.isHitByRay(ray);
-    return hitPoint;
+
+    // backface culling
+    const backFaceSpecifier = rayDirection
+      .multiplyBy(-1)
+      .innerProdWith(geometry.normal);
+
+    if (backFaceSpecifier > 0) {
+      // not backface, so proceed
+      const hitPoint = geometry.isHitByRay(ray);
+      return hitPoint;
+    } else {
+      // this is a backface, so no need to calculate the hitPoint
+      return null;
+    }
   }
 }
 
