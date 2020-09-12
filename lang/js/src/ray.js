@@ -1,18 +1,20 @@
-const Vec3 = require('./vec3')
+const Vec3 = require("./vec3");
 class Ray {
-    constructor(origin, direction ) {
-        this.origin = origin        // Vec3
-        this.direction = direction  // Vec3
-    }
-    
-    getOrigin() {return this.origin;}
-    getDirection() {return this. direction;}
-    
-    pointAtParameter(t) {
-        return this.origin.addWith(
-            this.direction.multiplyBy(t)
-        )
-    }
+  constructor(origin, direction) {
+    this.origin = origin; // Vec3
+    this.direction = direction; // Vec3
+  }
+
+  getOrigin() {
+    return this.origin;
+  }
+  getDirection() {
+    return this.direction;
+  }
+
+  pointAtParameter(t) {
+    return this.origin.addWith(this.direction.multiplyBy(t));
+  }
 }
 
 module.exports = Ray;

@@ -1,28 +1,27 @@
-const express = require('express');
+const path = require("path");
+const express = require("express");
 const app = express();
-app.set("view engine", "ejs")
+
+app.set("view engine", "ejs");
+
 app.use(express.static("public"));
 
-app.use(express.json())
+app.use(express.json());
 
-const renderer = require("./src/renderer")
+const renderer = require("./src/renderer");
 
+app.get("/", (req, res, next) => {
+  res.render("index");
+});
 
-app.get('/', (req, res, next) => {
-    res.render("index.ejs")
-})
-
-app.post('/sceneData', (req, res, next) => {
-
-    console.log(req.body)
-    const { nRows, nCols, cellWidth, cellHeight} = req.body
-
-    // const nRowsModified = parseInt(nCols/2)
-    data = renderer( {nCols, nRows, cellWidth, cellHeight})
-    res.send(data)
-})
+app.post("/sceneData", (req, res, next) => {
+  console.log(req.body);
+  const { nRows, nCols, cellWidth, cellHeight } = req.body;
+  data = renderer({ nCols, nRows, cellWidth, cellHeight });
+  res.send(data);
+});
 
 const PORT = 8000;
 app.listen(PORT, () => {
-    console.log(`Go to http://localhost:${PORT}`);
-})
+  console.log(`Go to http://localhost:${PORT}`);
+});
