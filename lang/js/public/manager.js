@@ -41,7 +41,7 @@ const getGrid = (nRows, nCols, cellWidth, cellHeight) => {
     return grid;
 }
 
-const getColorDataForCells = async (nRows, nCols) => {
+const getColorDataForCells = async (nRows, nCols, cellWidth, cellHeight) => {
     const url = 'http://localhost:8000/sceneData';
     const res = await fetch(url, {
         method: 'POST',
@@ -49,7 +49,7 @@ const getColorDataForCells = async (nRows, nCols) => {
             'Content-Type': 'application/json',
         },
         // body: JSON.stringify({nRows, nCols}),
-        body: JSON.stringify({nRows, nCols}),
+        body: JSON.stringify({nRows, nCols, cellWidth, cellHeight}),
     });
 
 
@@ -60,8 +60,8 @@ const getColorDataForCells = async (nRows, nCols) => {
 }
 
 main = async () => {
-    const CELL_WIDTH = 19;
-    const CELL_HEIGHT = 19;
+    const CELL_WIDTH = 5;
+    const CELL_HEIGHT = 5;
     const CELL_MARGIN = 1;
 
     const container = document.querySelector(".container");
@@ -69,7 +69,7 @@ main = async () => {
     const grid = getGrid(nRows, nCols, CELL_WIDTH, CELL_HEIGHT)
     container.appendChild(grid);
 
-    gridData = await getColorDataForCells(nRows, nCols)
+    gridData = await getColorDataForCells(nRows, nCols, CELL_WIDTH, CELL_HEIGHT)
     console.log(gridData.cells)
 
     gridData.cells.forEach(cell => {

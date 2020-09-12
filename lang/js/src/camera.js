@@ -1,4 +1,5 @@
 const Vec3 = require("./vec3")
+const Ray = require("./ray")
 
 class Camera {
     constructor({ location, rotation, viewportSize, pixelSize }) {
@@ -8,35 +9,43 @@ class Camera {
         this._viewportHeight = viewportSize.height;
         this._pixelSize = pixelSize;
 
-        this._pixelateViewPort()
+        this.viewport = this._getPixelatedViewport()
+
     }
 
     get viewportWidth() { return this._viewportWidth }
     get viewportHeight() { return this._viewportHeight }
+    get viewportPixels() {return this.viewport}
     get pixelWidth() { return this._pixelSize.width }
     get pixelHeight() { return this._pixelSize.height }
     get origin() { return this._location }
 
-    _pixelateViewPort() {
-        const { topleft, topright, bottomLeft, bottomRight } = this._getViewPortVertices();
+    _getPixelatedViewport() {
+        const { topleft } = this._getViewPortVertices();
         const viewport = []
         const hMax = parseInt(this.viewportWidth / this.pixelWidth)
         const vMax = parseInt(this.viewportHeight / this.pixelHeight)
-        for (let i = 1; i < vMax + 2; i += 2) {
-            for (let j = 1; j < hMax + 2; j += 2) {
+
+        // [STRATEGY]
+        // starting from the topleft corner
+        // x should increase as i increases
+        // y should decrease as j increases
+        for (let i = 1; i < (vMax + 1)*2; i += 2) {
+            for (let j = 1; j < (hMax + 1)*2; j += 2) {
                 let currentPixelMidPoint = new Vec3(
                     topleft.x + j * (1 / 2) * this.pixelWidth,
                     topleft.y - i * (1 / 2) * this.pixelHeight,
                     0
                 )
 
-                let indexLeft = parseInt((i-1)/2);
-                let indexRight = parseInt((j-1)/2);
+                let indexLeft = parseInt((i - 1) / 2);
+                let indexRight = parseInt((j - 1) / 2);
 
                 viewport.push(
                     {
-                        pixid: `${indexLeft}_${indexRight}`,
-                        pixMidPoint: currentPixelMidPoint
+                        pixelId: `${indexLeft}_${indexRight}`,
+                        pixelMidpoint: currentPixelMidPoint,
+                        seenObjects: []
                     }
                 )
             }
@@ -71,12 +80,35 @@ class Camera {
             bottomLeft, bottomRight
         }
     }
+
+    castRaysFromEachPixel([...geometries]) {
+        geometries.forEach((geometry, geometryIndex) => {
+            // cast ray from each viewport pixel's midpoint
+            this.viewport.forEach(pixel => {
+                const hit = this.castSingleRay(pixel.pixelMidpoint, geometry)
+                if(hit) {
+                    pixel.seenObjects.push(geometryIndex)
+                }
+            });
+        });
+    }
+
+    castSingleRay(pixelMidpoint, geometry) {
+        const rayOrigin = new Vec3(pixelMidpoint.x, pixelMidpoint.y, pixelMidpoint.z);
+        const rayDirection = new Vec3(0, 0, -1);
+        const ray = new Ray(rayOrigin, rayDirection);
+        const hitByRay = geometry.isHitByRay(ray);
+        return hitByRay;
+    }
 }
 
+module.exports = Camera;
+
 // test
-const camera = new Camera({
+/* const camera = new Camera({
     location: new Vec3(0, 0, 0),
     rotation: new Vec3(0, 0, 0),
     viewportSize: { width: 10, height: 10 },
     pixelSize: { width: 5, height: 5 }
 })
+ */

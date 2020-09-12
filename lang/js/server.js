@@ -15,14 +15,12 @@ app.get('/', (req, res, next) => {
 app.post('/sceneData', (req, res, next) => {
 
     console.log(req.body)
-    const { nRows, nCols } = req.body
+    const { nRows, nCols, cellWidth, cellHeight} = req.body
 
-    const nRowsModified = parseInt(nCols/2)
-    data = renderer( nCols, nRows)
+    // const nRowsModified = parseInt(nCols/2)
+    data = renderer( {nCols, nRows, cellWidth, cellHeight})
     res.send(data)
 })
-
-
 
 const PORT = 8000;
 app.listen(PORT, () => {
