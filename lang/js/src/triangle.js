@@ -1,11 +1,12 @@
 const { cramersRule3 } = require("./utils");
 
 class Triangle {
-  constructor({ v1, v2, v3, material }) {
+  constructor({ v1, v2, v3, material, normal }) {
     this._v1 = v1;
     this._v2 = v2;
     this._v3 = v3;
     this._material = material;
+    this._normal = normal;
   }
   get type() {
     return "geometry";
@@ -24,10 +25,14 @@ class Triangle {
   }
 
   get normal() {
-    const v1v2 = this.v1.subtractFrom(this.v2);
-    const v1v3 = this.v1.subtractFrom(this.v3);
+    if (this._normal) {
+      return this._normal;
+    } else {
+      const v1v2 = this.v1.subtractFrom(this.v2);
+      const v1v3 = this.v1.subtractFrom(this.v3);
 
-    return v1v2.crossProdWith(v1v3);
+      return v1v2.crossProdWith(v1v3);
+    }
   }
 
   getIntersectionPoint(ray) {
