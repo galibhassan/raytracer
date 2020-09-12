@@ -1,6 +1,4 @@
 const Vec3 = require("./vec3");
-const Ray = require("./ray");
-const Sphere = require("./sphere");
 const Light = require("./light");
 const Triangle = require("./triangle");
 const Scene = require("./scene");
