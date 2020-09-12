@@ -15,9 +15,9 @@
     flex-direction: row;
 }
 .cell{
-    background-color: rgb(202, 202, 202);
+    background-color: rgb(53, 53, 53);
     margin: 1px;
-    border-radius: 5px;
+    border-radius: 4px;
 }
 
 body{

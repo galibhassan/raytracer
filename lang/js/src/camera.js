@@ -85,9 +85,9 @@ class Camera {
         geometries.forEach((geometry, geometryIndex) => {
             // cast ray from each viewport pixel's midpoint
             this.viewport.forEach(pixel => {
-                const hit = this.castSingleRay(pixel.pixelMidpoint, geometry)
-                if(hit) {
-                    pixel.seenObjects.push(geometryIndex)
+                const hitPoint = this.castSingleRay(pixel.pixelMidpoint, geometry)
+                if(hitPoint) {
+                    pixel.seenObjects.push({geometryIndex, hitPoint})
                 }
             });
         });
@@ -97,8 +97,8 @@ class Camera {
         const rayOrigin = new Vec3(pixelMidpoint.x, pixelMidpoint.y, pixelMidpoint.z);
         const rayDirection = new Vec3(0, 0, -1);
         const ray = new Ray(rayOrigin, rayDirection);
-        const hitByRay = geometry.isHitByRay(ray);
-        return hitByRay;
+        const hitPoint = geometry.isHitByRay(ray);
+        return hitPoint;
     }
 }
 

@@ -60,8 +60,8 @@ const getColorDataForCells = async (nRows, nCols, cellWidth, cellHeight) => {
 }
 
 main = async () => {
-    const CELL_WIDTH = 5;
-    const CELL_HEIGHT = 5;
+    const CELL_WIDTH = 10;
+    const CELL_HEIGHT = 10;
     const CELL_MARGIN = 1;
 
     const container = document.querySelector(".container");
