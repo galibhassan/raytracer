@@ -48,11 +48,11 @@ class Scene {
       if (pixel.seenObjects.length > 0) {
         if (pixel.seenObjects.length > 1) {
           let nearestObjectIndex = pixel.seenObjects[0].geometryIndex;
-          let nearestObjectHitPoint = pixel.seenObjects[0].hitPoint;
+          let nearestObjectHitPoint = pixel.seenObjects[0].hitPoint.t;
 
           for (let i = 1; i < pixel.seenObjects.length; i++) {
-            if (pixel.seenObjects[i].hitPoint < nearestObjectHitPoint) {
-              nearestObjectHitPoint = pixel.seenObjects[i].hitPoint;
+            if (pixel.seenObjects[i].hitPoint.t < nearestObjectHitPoint) {
+              nearestObjectHitPoint = pixel.seenObjects[i].hitPoint.t;
               nearestObjectIndex = pixel.seenObjects[i].geometryIndex;
             }
           }

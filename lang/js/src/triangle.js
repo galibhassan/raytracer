@@ -66,7 +66,7 @@ class Triangle {
         IntersectionPoint
       );
       if (a > 0 && b > 0 && c > 0) {
-        return t;
+        return { t, coordinate: IntersectionPoint };
       } else {
         return null;
       }
