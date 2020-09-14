@@ -2,6 +2,7 @@
     font-family: monospace;
 }
 
+
 .container {
     width: 98vw;
     height: 90vh;
@@ -17,9 +18,10 @@
 .cell{
     background-color: rgb(53, 53, 53);
     margin: 1px;
-    border-radius: 5px;
+    border-radius:4px;
 }
 
 body{
-    background-color: rgb(85, 85, 85);
-}
+    background-color: rgb(53, 41, 41);
+    color: rgb(71, 121, 121);
+ }

@@ -27,12 +27,12 @@ class Triangle {
   get normal() {
     if (this._normal) {
       return this._normal;
-    } else {
+    }
       const v1v2 = this.v1.subtractFrom(this.v2);
       const v1v3 = this.v1.subtractFrom(this.v3);
 
       return v1v2.crossProdWith(v1v3).unitVector()
-    }
+    
   }
 
   getIntersectionPoint(ray) {

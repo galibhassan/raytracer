@@ -42,8 +42,8 @@ const parseFaceLine = (faceLine) => {
 const parseFaceVertex = (fVert) => {
   fVertSingle = fVert.split(`/`);
   const vertIndex = parseInt(fVertSingle[0]) - 1; // -1, because obj counts from 1
-  const textureCoord = parseInt(fVertSingle[1]);
-  const vNormal = parseInt(fVertSingle[2]);
+  const textureCoord = parseInt(fVertSingle[1]) - 1;
+  const vNormal = parseInt(fVertSingle[2]) - 1;
   return { vertIndex, textureCoord, vNormal };
 };
 

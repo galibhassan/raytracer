@@ -19,6 +19,7 @@ class Scene {
     if (node.type === "camera") this._camera = node;
     if (node.type === "geometry") this._geometries.push(node);
     if (node.type === "light") this._lights.push(node);
+    if (node.type === "poly") this._geometries.push(...node.triangles);
   }
 
   render({ nRows, nCols, cellWidth, cellHeight }) {
@@ -31,7 +32,7 @@ class Scene {
       (_viewportWidth * nRows * cellHeight) / (cellWidth * nCols);
 
     const camera = new Camera({
-      location: new Vec3(1, 1, 0),
+      location: new Vec3(0, 0, 20),
       rotation: new Vec3(0, 0, 0),
       viewportSize: { width: _viewportWidth, height: _viewportHeight },
       pixelSize: { width: _pixelWidth, height: _pixelHeight },

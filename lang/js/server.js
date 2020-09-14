@@ -8,7 +8,7 @@ app.use(express.static("public"));
 
 app.use(express.json());
 
-const renderer = require("./src/renderer");
+const main = require("./src/main");
 
 app.get("/", (req, res, next) => {
   res.render("index");
@@ -17,7 +17,7 @@ app.get("/", (req, res, next) => {
 app.post("/sceneData", (req, res, next) => {
   console.log(req.body);
   const { nRows, nCols, cellWidth, cellHeight } = req.body;
-  data = renderer({ nCols, nRows, cellWidth, cellHeight });
+  data = main({ nCols, nRows, cellWidth, cellHeight });
   res.send(data);
 });
 
