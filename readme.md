@@ -1,4 +1,4 @@
-# `<div>` Raytracer
+# `<divPixel>` Raytracer
 This is an HTML `<div>` based raytracer that I have been building in my free time. The image is rendered by coloring the plane old `<div>`s arranged in 2D array. 
 
 I have also added an `.obj` loader. However the surface calculation seems to be betraying (see the last image downstairs).
